@@ -11,7 +11,7 @@ University City, Sharjah (Aug 2024–Present)
 
 That being said, most of the work on this website entails concepts in RF/microwave engineering and machine learning, designing and benchmarking transmitter chains while operating RF measurement rigs and connectorized components. My day-to-day spans system modeling, test automation, and telecom subsystem analysis, with a focus on spectral efficiency, signal integrity, and repeatable lab workflows.
 
-Current research centers on power-amplifier linearization using advanced ML, including architecture-matched modeling to align nonlinearity behavior across identical PA topologies. I received an AUS Undergraduate Research Grant for this effort and continue to refine compensation strategies that improve EVM and adjacent-channel performance under realistic drive conditions.
+Current research centers on power-amplifier linearization using advanced ML, including architecture-matched modeling to align nonlinearity behavior across similar PA topologies. I received an AUS Undergraduate Research Grant for this effort and continue to refine compensation strategies that improve EVM and adjacent-channel performance under realistic drive conditions. In addition to another grant for my work on [an ADRV9026-based measurement system](({{ '/_posts/2025-10-19-SDP_ADRV9026' | relative_url }})).
 
 ## More Personal Work Includes...
 Designing a Phase-Locked Loop for a Frequency-Modulated Continuous-Wave Ground Penetrating Radar using ADIsimPLL and Analog Devices’ ADF4159, achieving exceptionally low frequency and phase error for clean chirp generation and robust time–frequency coherence 
