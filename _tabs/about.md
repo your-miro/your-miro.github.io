@@ -16,8 +16,7 @@ Current research centers on power-amplifier linearization using advanced ML, inc
 ## More Personal Work Includes...
 Designing a Phase-Locked Loop for a Frequency-Modulated Continuous-Wave Ground Penetrating Radar using ADIsimPLL and Analog Devices’ ADF4159, achieving exceptionally low frequency and phase error for clean chirp generation and robust time–frequency coherence 
 (<span style="font-size:0.95rem; color:#1d4ed8;">[System build ongoing]({{ site.baseurl }}/_posts/2025-01-05-PLL for GPR)</span>).
-Complementing this, I earned a professional certificate in PCB fabrication (2023), built 
-[a 1.8 GHz Class-A single-transistor PA](({{ '/_posts/2025-05-12-ATF38143' | relative_url }}))
+Complementing this, I earned a professional certificate in PCB fabrication (2023), built a [1.8 GHz Class-A single-transistor PA](({{ '/_posts/2025-05-12-ATF38143' | relative_url }}))
 , and executed multi-layer PCB processes from layout through chemical etching. Beyond single blocks, I’ve planned 
 [complete RF line-ups](({{ '/_posts/2025-04-29-RF Lineup' | relative_url }})) 
 in Keysight ADS  to a fixed budget and target transmission characteristics (C/IMD3 and P1dB), translating datasheet constraints into practical design trade-offs.
