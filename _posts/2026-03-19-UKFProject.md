@@ -9,6 +9,7 @@ description: >-
   and system benchmarking techniques used in modern radar and wireless
   communication hardware.
 ---
+
 ## Overview
 
 A real-time computer vision system that detects a tennis ball rolling toward a panel, estimates its trajectory and speed using a Kalman filter, and steers a deflector to redirect it toward a target goal. Built to run on a Raspberry Pi within a ~30ms latency budget.
