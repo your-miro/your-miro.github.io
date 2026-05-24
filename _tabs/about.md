@@ -4,7 +4,7 @@ icon: fas fa-info-circle
 order: 4
 ---
 
- <span style="font-size:1.05rem">Current Role:</span><br>
+ <span style="font-size:1.05rem">Previous Role:</span><br>
  <span style="font-size:0.95rem; color:#1d4ed8;">Undergraduate Research Assistant at the American University of Sharjah (AUS)<br>
 University City, Sharjah (Aug 2024–Present)
 </span>

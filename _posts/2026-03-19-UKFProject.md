@@ -1,6 +1,6 @@
 ---
 title: "Tennis Ball Deflection System: Detection, Tracking, and Deflection"
-date: 2025-01-20 10:00:00 +0000
+date: 2026-01-20 10:00:00 +0000
 categories: [Electrical Engineering, Robotics]
 tags: [Camera Vision, raspberry-pi, kalman-filter, python, opencv, Robotics, RADAR]
 description: >-
@@ -12,7 +12,9 @@ description: >-
 
 ## Overview
 
-A real-time computer vision system that detects a tennis ball rolling toward a panel, estimates its trajectory and speed using a Kalman filter, and steers a deflector to redirect it toward a target goal. Built to run on a Raspberry Pi within a ~30ms latency budget.
+A real-time computer vision system that detects a tennis ball rolling toward a panel, estimates its trajectory and speed using a Kalman filter, and steers a deflector to redirect it toward a target goal. Built to run on a Raspberry Pi within a ~30ms latency budget. 
+
+> Note: Couldn't finish this because of the war :/ (university switched to online mode)
 
 ## How It Works
 

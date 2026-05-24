@@ -1,6 +1,6 @@
 ---
 title: "VLSI Full Adder Design, Simulation, & Layout"
-date: 2025-01-20 10:00:00 +0000
+date: 2026-05-20 10:00:00 +0000
 categories: [Electrical Engineering, Radar Design]
 tags: [vlsi, cmos, ltspice, electric-vlsi, digital-design]
 description: >-
