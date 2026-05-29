@@ -30,8 +30,6 @@ The approach is related in spirit to spectrum-domain fitting methods such as the
 
 Representative results from the recorded experiments showed baseline adjacent-channel leakage around `-28 dBc`, improving to roughly `-44 dBc` after linearization. A cross-PA linearization test also produced adjacent-channel values around `-44 dBc`, suggesting that the spectral objective was capturing behavior relevant beyond a single narrow training case.
 
-Suggested wording:
-
 > I implemented a spectrum-aware offline DPD objective that augments time-domain error with an ACLR penalty computed from predicted IQ spectra, aligning neural DPD training with adjacent-channel leakage reduction.
 
 ## Cascaded Differentiable DPD
@@ -50,8 +48,6 @@ This approach uses a learned PA model as a differentiable surrogate for hardware
 
 This allowed me to separate two problems: first learn the PA's nonlinear and memory behavior, then optimize an inverse/predistortion function through that learned behavior. Recorded behavioral-model runs reached roughly `-31 dB` to `-33 dB` NMSE in representative PA1/PA2 experiments.
 
-Suggested wording:
-
 > I built an offline DPD training loop by first learning a differentiable PA surrogate, freezing it, and then optimizing a neural predistorter through that surrogate using measured RF behavior.
 
 ## BiLSTM PA Behavioral Modeling
@@ -66,15 +62,6 @@ x[n] -> [x[n], x[n-1], x[n-2], ..., x[n-M]]
 
 where each complex sample is represented through I/Q channels. This made the model explicitly memory-aware while letting the BiLSTM learn nonlinear temporal dependencies from measured data.
 
-Evaluation was RF-centered rather than only ML-centered:
-
-- NMSE for waveform prediction.
-- PSD for spectral fidelity.
-- AM/AM and AM/PM for nonlinear PA behavior.
-- ACLR for adjacent-channel leakage.
-
-Suggested wording:
-
 > I modeled PA memory effects using BiLSTM sequence models over delayed I/Q samples and evaluated the models using RF metrics such as NMSE, PSD, AM/AM, AM/PM, and ACLR.
 
 ## Cross-PA Transfer and Lightweight Adaptation
@@ -87,10 +74,6 @@ The transfer-learning pattern was:
 PA1-trained recurrent dynamics -> frozen
 small adaptation layer(s)      -> trainable for PA2
 ```
-
-This framed PA behavior as a combination of reusable memory dynamics and device-specific gain/nonlinearity. Dedicated PA models still tended to perform better, but the adapted models demonstrated that some behavior could be reused with far fewer trainable parameters.
-
-Suggested wording:
 
 > I investigated cross-PA model reuse by freezing high-capacity recurrent dynamics learned from one PA and retraining only lightweight adaptation layers for another PA.
 
@@ -125,8 +108,6 @@ The strongest lesson was that peak-only selection is risky. It can overrepresent
 
 A representative selected-input ARVTDNN-style run reached around `-35 dB` NMSE, showing that careful selection can preserve modeling quality while reducing the amount of training data.
 
-Suggested wording:
-
 > I developed and evaluated memory-polynomial input matrix selection methods for efficient neural PA modeling, comparing peak-window, magnitude-sorted, partial-random, and PDF-preserving selection strategies.
 
 ## Neural Model Pruning
@@ -143,7 +124,6 @@ pretrained model
 
 This addressed a different deployment bottleneck than input selection. Input selection reduces training burden and can improve sample efficiency; pruning reduces model storage and inference cost.
 
-Suggested wording:
 
 > I explored low-complexity PA modeling from two directions: selecting more informative memory-polynomial input rows before training and applying neural weight pruning after training.
 
@@ -162,29 +142,25 @@ memory-aware input features
 
 This is useful because PA modeling has a long history of linear-in-parameters polynomial regression, while neural networks are better at flexible feature construction. Combining the two gives a structured alternative to a fully black-box dense regressor. A memory-polynomial baseline around `-32.5 dB` NMSE provided a useful classical reference point.
 
-Suggested wording:
-
 > I explored hybrid neural/regression PA models where a neural front end learns useful features and a least-squares layer performs the final I/Q regression.
 
 ## KAN Status
 
 I researched whether memory-polynomial input matrix selection could act as a pruning or basis-selection strategy for KAN-style neural DPD. In this archive, the documented experiments mainly cover BiLSTM, RVTDNN, ARVTDNN, pruning, and memory-matrix selection rather than explicit KAN runs.
 
-Suggested wording:
-
-> I researched the applicability of memory-polynomial input matrix selection as an efficient basis-selection strategy for KAN-style neural DPD, while the documented experiments focused on BiLSTM, RVTDNN, and ARVTDNN models.
+<!-- 
+> I researched the applicability of memory-polynomial input matrix selection as an efficient basis-selection strategy for KAN-style neural DPD, while the documented experiments focused on BiLSTM, RVTDNN, and ARVTDNN models. -->
 
 ## Hardware and Measurement Context
 
 The work was not simulation-only. It involved aligned measured IQ captures, PA input/output analysis, AM/AM and AM/PM plots, PSD and ACLR calculations, memory matrix generation, and repeated model comparisons. The ADRV9026-MB evaluation-board system gave the project a practical RF measurement basis and forced the modeling work to deal with real capture alignment, nonlinear compression, memory effects, and spectral regrowth.
 
-Suggested wording:
 
 > Most experiments used measured IQ data from an ADRV9026-MB evaluation-board system implemented by the team in the Advanced Radio Technologies Lab, grounding the ML-DPD work in practical RF measurements.
 
 ## Credit Notes
 
-- Majid Ahmed: https://majid-0.github.io/
+- <a href = "https://majid-0.github.io/">Majid Ahmed</a>
 
 ## Strongest Public-Facing Claims
 
