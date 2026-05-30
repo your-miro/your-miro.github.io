@@ -8,12 +8,17 @@ description: >-
   linearization, digital predistortion (DPD), PCB design considerations,
   and system benchmarking techniques used in modern radar and wireless
   communication hardware.
+image:
+  path: /assets/img/VLSI_Dsgn/Picture3.png
 ---
+
+### <a href = assets\lib\VLSI_Design_report.pdf> Project Report<\a>
 
 ## Overview
  
 A full 1-bit CMOS full adder designed, simulated, and laid out from the gate level up, targeting a 22nm low-power process node. The project covers transistor sizing, propagation delay extraction via SPICE directives, physical layout in Electric VLSI, and a comparison between schematic-level and layout-extracted parasitics.
  
+ ![Top level schematic](/assetsimg/VLSI_Dsgn/Picture1.png)
 > **figure:** Top-level schematic from `Full_Adder.asc` showing the NAND/INV gate tree for Sum and Cout.
  
 ---
@@ -49,7 +54,8 @@ Delays were extracted using LTspice's `.meas TRAN` directive, which interpolates
 | NAND2 | 1.871 ns | 1.516 ns |
 | NAND3 | 1.950 ns | 1.520 ns |
  
-> **Suggested figure:** LTspice waveforms for NAND2 and NAND3 showing the 50% crossing points used for delay extraction.
+ ![Delay Extraction for NAND3](assets\img\VLSI_Dsgn\DlyNAND.png)
+> **figure:** LTspice waveforms for NAND2 and NAND3 showing the 50% crossing points used for delay extraction.
  
 ### Full Adder Top-Level Delay
  
@@ -70,7 +76,8 @@ A 320ns transient simulation cycling all 8 input combinations verified correct S
 | Falling (111 → 000) | 3.39 ns |
  
 The Sum path is ~3× slower than Cout, as expected — it passes through more gate stages. These values align with hand-calculated worst-case paths from the individual gate delays above.
- 
+
+![An annotated waveform from `Circuit.asc` for all input combinations with Sum and C out outputs](assets\img\VLSI_Dsgn\Picture2.png) 
 > **figure:** The annotated truth table waveform from `Circuit.asc` showing all 8 input combinations with Sum and Cout outputs.
  
 ---
@@ -81,8 +88,11 @@ The Sum path is ~3× slower than Cout, as expected — it passes through more ga
  
 The full adder was laid out in Electric VLSI using standard cell conventions: PMOS devices in the upper rail (VDD), NMOS in the lower rail (GND), with inputs A, B, C brought in from the bottom and the output taken from the center. DRC passed with **0 errors and 0 warnings**.
  
+![Layout of NOR3 cell using CMOS technology](/assets/img/VLSI_Dsgn/Picture3.png)
 > **figure:** Electric VLSI layout screenshot of the NOR3 cell with the PMOS/NMOS rows and metal routing visible.
- 
+
+![DRC Check Output log](/assets/img/VLSI_Dsgn/Picture4.png) 
+
 The extracted netlist (NOR3 cell shown as representative example) reflects the actual diffusion geometry:
  
 ```spice
@@ -103,7 +113,8 @@ The key result of the layout phase is the impact of parasitic capacitances extra
  
 The layout delays are roughly **2× higher** than the schematic estimates. LTspice captures only the ideal RC ladder from transistor sizing; Electric additionally captures wire capacitances, diffusion overlaps, and well proximity effects from the actual drawn geometry. This gap illustrates why parasitic extraction and iterative layout refinement are essential steps in any real VLSI design flow.
  
-> **Suggested figure:** Side-by-side LTspice waveforms for NOR3 Tpdr and Tpdf, annotated with the two measured delay values.
+![Waveform of NOR3 Cell](/assets/img/VLSI_Dsgn/Picture5.png)
+> **figure:** SPICE waveforms for NOR3 Tpdr and Tpdf, annotated with the two measured delay values.
  
 ---
  

@@ -4,6 +4,8 @@ date: 2025-12-12 00:00:00 +0400
 categories: [Research, RF Machine Learning]
 tags: [dpd, machine-learning, rf, aclr, nmse, bilstm, rvtdnn, arvtdnn, pruning, memory-polynomial, adrv9026]
 math: true
+image:
+  path: /assets/img/Code.png
 ---
 
 # Offline ML-DPD Research Archive
