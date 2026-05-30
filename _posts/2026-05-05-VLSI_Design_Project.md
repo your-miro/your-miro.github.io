@@ -12,13 +12,11 @@ image:
   path: /assets/img/VLSI_Dsgn/Picture3.png
 ---
 
-### <a href = assets\lib\VLSI_Design_report.pdf> Project Report<\a>
-
 ## Overview
  
 A full 1-bit CMOS full adder designed, simulated, and laid out from the gate level up, targeting a 22nm low-power process node. The project covers transistor sizing, propagation delay extraction via SPICE directives, physical layout in Electric VLSI, and a comparison between schematic-level and layout-extracted parasitics.
  
- ![Top level schematic](/assetsimg/VLSI_Dsgn/Picture1.png)
+ ![Top level schematic](/assets/img/VLSI_Dsgn/Picture1.png)
 > **figure:** Top-level schematic from `Full_Adder.asc` showing the NAND/INV gate tree for Sum and Cout.
  
 ---
@@ -116,6 +114,11 @@ The layout delays are roughly **2× higher** than the schematic estimates. LTspi
 ![Waveform of NOR3 Cell](/assets/img/VLSI_Dsgn/Picture5.png)
 > **figure:** SPICE waveforms for NOR3 Tpdr and Tpdf, annotated with the two measured delay values.
  
+## Project Report
+
+<embed src="{{ site.baseurl }}/assets/VLSI_Design_report.pdf"
+       type="application/pdf" width="100%" height="600px">
+
 ---
  
 ## Potential Directions
