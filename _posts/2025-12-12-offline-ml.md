@@ -12,7 +12,7 @@ image:
 
 This archive summarizes my offline digital predistortion (DPD) work as an undergraduate research assistant in the Advanced Radio Technologies Lab. The work sits between RF measurement, classical memory-polynomial intuition, and machine-learning-based PA modeling. Most experiments used measured IQ data from the team's ADRV9026-MB evaluation-board system and supporting lab instrumentation.
 
-The main research thread was measurement-driven ML-DPD: align measured PA input/output IQ, transform the samples into memory-aware features, train behavioral PA models, and use those models to evaluate or train neural DPD systems. Over time, the work expanded from BiLSTM behavioral modeling into spectral-loss DPD, cross-PA transfer, efficient input selection, pruning, and hybrid least-squares/neural regression.
+The main research thread was measurement-driven ML-DPD: align measured PA input/output IQ, transform the samples into memory-aware features, train behavioral PA models, and use those models to evaluate or train neural DPD systems. Over time, the work expanded from BiLSTM behavioral modeling into spectral-loss DPD, cross-PA transfer, efficient input selection, pruning, and hybrid least-squares/neural regression. Also, in due honesty, I used ChatGPT's Codex to compile most of this work as it had always been scattered throughout my work computer on different .ipynb jupyter notebooks.
 
 ## Spectral-Output-Aware DPD Loss
 
