@@ -175,9 +175,9 @@ The work was not simulation-only. It involved aligned measured IQ captures, PA i
 - Explored neural model pruning for RVTDNN/ARVTDNN deployment efficiency.
 - Tested hybrid least-squares/neural regression layers as a bridge between GMP-style modeling and neural feature learning.
 
-## Open Items
+<!-- ## Open Items
 
 - Add explicit KAN experiment results if they are available elsewhere.
 - Add the final Majid Ahmed link.
 - Add before/after PSD figures and ACLR tables for a polished public post.
-- Clarify which measurements came directly from the ADRV9026-MB workflow and which came from supporting measurement equipment.
+- Clarify which measurements came directly from the ADRV9026-MB workflow and which came from supporting measurement equipment. -->
