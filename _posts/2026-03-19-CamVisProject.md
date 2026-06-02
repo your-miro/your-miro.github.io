@@ -79,3 +79,7 @@ python rpi_tennis_tracker.py --video test.mp4 --preview --no-gpio
 | `R_STD` | Higher → filter trusts physics model more (smoother, more lag) |
 | `HSV_LOWER/UPPER` | Adjust for your lighting conditions (press `d` to see the mask) |
 | `MIN_RADIUS / MAX_RADIUS` | Set based on camera distance to the floor |
+
+## Discussions:
+
+{% include comment.html %}

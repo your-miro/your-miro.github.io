@@ -14,3 +14,8 @@ image:
 In this workshop, I showed students how to build flowgraphs on GNU Radio, and how to generate and edit python scripts from the  flowgraphs. The encompassing material serves as a very easy and simple-to-follow setup of a transceiver setup, so as to introduce students to large scale (not in terms of size, but in components and system complexity), more commercial systems.
 
 ## Simple Modulation Schemes
+
+
+## Discussions:
+
+{% include comment.html %}

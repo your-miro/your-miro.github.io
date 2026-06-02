@@ -128,4 +128,7 @@ The layout delays are roughly **2× higher** than the schematic estimates. LTspi
 **Logical effort optimization:** Apply the logical effort method systematically to re-size transistors along the critical Sum path and quantify the delay reduction against the baseline sizing used here.
  
 **Power analysis:** Add `.meas` directives to capture average supply current and compute dynamic power at different switching frequencies. This is a natural extension given the transient simulation infrastructure already in place.
- 
+
+## Discussions:
+
+{% include comment.html %}
