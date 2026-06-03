@@ -21,8 +21,6 @@ image:
  
  Whilst the chirp generation may be easy, the issue arises in the subsequent RF blocks. Where amplifying and filtering the signal would require a relatively wide bandwidth, expressed as the ratio $f_\text{bandwidth} / f_\text{center}$. Hence, a compromise must be taken to make up for either. \[Perhaps an atypical approach should be considered, more on this project later...\]
 
-
-
  ## Discussions:
 
 {% include comment.html %}
