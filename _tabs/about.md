@@ -6,8 +6,12 @@ order: 4
 
  <span style="font-size:1.05rem">Previous Role:</span><br>
  <span style="font-size:0.95rem; color:#1d4ed8;">Undergraduate Research Assistant at the American University of Sharjah (AUS)<br>
-University City, Sharjah (Aug 2024–Present)
 </span>
+> (Aug 2024–May 2026) <br>
+> University City, Sharjah
+ 
+
+
 
 That being said, most of the work on this website entails concepts in RF/microwave engineering and machine learning, designing and benchmarking transmitter chains while operating RF measurement rigs and connectorized components. My day-to-day spans system modeling, test automation, and telecom subsystem analysis, with a focus on spectral efficiency, signal integrity, and repeatable lab workflows.
 
