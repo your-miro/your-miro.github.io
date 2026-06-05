@@ -4,4 +4,6 @@ icon: fas fa-book
 order: 5
 ---
 
-Experimental
+{% for post in site.posts%}
+post.title
+{%endfor%}

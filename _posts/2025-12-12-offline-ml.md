@@ -8,6 +8,8 @@ image:
   path: /assets/img/Code.png
 ---
 
+> As a theoretical precursor, please refer to this post on [the theory behind RF component distortion.](https://your-miro.github.io/posts/DPD/) (Which also applies to most high frequency devices one way or another)
+
 # Offline ML-DPD Research Archive
 
 This archive summarizes my offline digital predistortion (DPD) work as an undergraduate research assistant in the Advanced Radio Technologies Lab. The work sits between RF measurement, classical memory-polynomial intuition, and machine-learning-based PA modeling. Most experiments used measured IQ data from the team's ADRV9026-MB evaluation-board system and supporting lab instrumentation.
