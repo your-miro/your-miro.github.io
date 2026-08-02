@@ -4,10 +4,7 @@ date: 2026-01-20 10:00:00 +0000
 categories: [Electrical Engineering, Robotics]
 tags: [Camera Vision, raspberry-pi, kalman-filter, python, opencv, Robotics, RADAR]
 description: >-
-  Overview of RF system design fundamentals including power amplifier
-  linearization, digital predistortion (DPD), PCB design considerations,
-  and system benchmarking techniques used in modern radar and wireless
-  communication hardware.
+  Overview of the project's tracking sub-system design
 ---
 
 ## Overview
