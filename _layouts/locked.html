@@ -1,0 +1,56 @@
+---
+layout: default
+---
+
+<div id="lock-screen">
+  <input type="password" id="key-input" placeholder="Enter key" autocomplete="off">
+  <button onclick="unlock()">Unlock</button>
+  <p id="err" style="display:none;color:red;">Wrong key.</p>
+</div>
+
+<div id="post-content" style="display:none; white-space:pre-wrap;"></div>
+
+<script>
+const SALT = "{{ page.salt }}";
+const IV = "{{ page.iv }}";
+const CIPHERTEXT = "{{ page.ciphertext }}";
+
+function b64ToBuf(b64) {
+  return Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+}
+
+async function deriveKey(password, saltBuf) {
+  const baseKey = await crypto.subtle.importKey(
+    "raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveKey"]
+  );
+  return crypto.subtle.deriveKey(
+    { name: "PBKDF2", salt: saltBuf, iterations: 250000, hash: "SHA-256" },
+    baseKey,
+    { name: "AES-GCM", length: 256 },
+    false,
+    ["decrypt"]
+  );
+}
+
+async function unlock() {
+  const password = document.getElementById('key-input').value;
+  const err = document.getElementById('err');
+  try {
+    const saltBuf = b64ToBuf(SALT);
+    const ivBuf = b64ToBuf(IV);
+    const cipherBuf = b64ToBuf(CIPHERTEXT);
+
+    const key = await deriveKey(password, saltBuf);
+    const plainBuf = await crypto.subtle.decrypt(
+      { name: "AES-GCM", iv: ivBuf }, key, cipherBuf
+    );
+
+    const plaintext = new TextDecoder().decode(plainBuf);
+    document.getElementById('post-content').textContent = plaintext;
+    document.getElementById('post-content').style.display = 'block';
+    document.getElementById('lock-screen').style.display = 'none';
+  } catch (e) {
+    err.style.display = 'block'; // decrypt throws on wrong password (authTag mismatch)
+  }
+}
+</script>
