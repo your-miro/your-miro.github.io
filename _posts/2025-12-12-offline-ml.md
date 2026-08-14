@@ -30,7 +30,7 @@ loss = time-domain error + scheduled_weight * adjacent-channel penalty
 
 This matters because RF linearization is judged spectrally. A waveform can have acceptable sample error while still producing unacceptable spectral regrowth. By adding an ACLR-oriented term, the training objective was tied more directly to the metric that matters in deployment.
 
-The approach is related in spirit to spectrum-domain fitting methods such as the user-provided arXiv reference on optimization-based behavioral modeling for mixers. That paper is not a PA-DPD paper, but it supports the same methodological idea: emphasize the spectral products that dominate system-level distortion rather than treating all errors as equally important. Reference: [Optimization-Based Behavioral Modeling of Mixers for Frequency Comb OFDM Radar Processing](https://arxiv.org/abs/2602.23889).
+The approach is related in spirit to spectrum-domain fitting methods such as the user-provided arXiv reference on optimization-based behavioral modeling for mixers. That paper is not a PA-DPD paper, but it supports the same methodological idea: emphasize the spectral products that dominate system-level distortion rather than treating all errors as equally important [Optimization-Based Behavioral Modeling of Mixers for Frequency Comb OFDM Radar Processing](https://arxiv.org/abs/2602.23889).
 
 Representative results from the recorded experiments showed baseline adjacent-channel leakage around `-28 dBc`, improving to roughly `-44 dBc` after linearization. A cross-PA linearization test also produced adjacent-channel values around `-44 dBc`, suggesting that the spectral objective was capturing behavior relevant beyond a single narrow training case.
 
@@ -162,11 +162,36 @@ The work was not simulation-only. It involved aligned measured IQ captures, PA i
 
 > Most experiments used measured IQ data from an ADRV9026-MB evaluation-board system implemented by the team in the Advanced Radio Technologies Lab, grounding the ML-DPD work in practical RF measurements.
 
+## Summary
+During my tenure as an undergraduate research assistant in the Advanced Radio Technologies Lab, I worked on offline digital predistortion (DPD) and RF power-amplifier behavioral modeling using machine-learning methods and measured IQ data. My previous experience with GMP-style modeling gave me a baseline for understanding PA nonlinearities, memory effects, AM/AM, AM/PM, NMSE, and ACLR.
+
+Most of the work was measurement-driven. The data was largely collected through the team's ADRV9026-MB evaluation-board system and supporting lab measurement workflows. I worked with aligned input/output IQ captures, generated memory-aware feature matrices, trained PA behavioral models, and evaluated outputs using RF metrics rather than only generic ML loss values.
+
+The main DPD direction used BiLSTM neural networks to model PA memory behavior. I converted I/Q samples into delay matrices, trained behavioral PA models, and used those models as differentiable surrogates. After training a PA model, I froze it, placed a trainable DPD model before it, and optimized the predistorter through the frozen PA model. This created an offline DPD workflow where hardware-measured behavior informed training without requiring the RF board to be in the optimization loop.
+
+One of the most novel parts of the work was a spectral-output-aware loss function. Instead of optimizing only time-domain MSE or NMSE, I implemented a loss that reconstructs complex IQ, computes a spectrum, separates carrier and adjacent-channel regions, and penalizes adjacent-channel leakage. This made the DPD objective more directly aligned with ACLR improvement and spectral regrowth suppression.
+
+Another thread was efficient training and low-complexity modeling. I worked with memory-polynomial-style input matrices containing delayed I/Q and nonlinear envelope terms:
+
+```text
+num_features = 2 * memory_depth + (nonlinear_degree - 1) * memory_depth
+```
+
+I then studied how to select informative rows from those matrices. I compared peak-window selection, magnitude-sorted selection, partial-random selection, and PDF-preserving train/validation/test splits. A key lesson was that selecting only high-power peak samples can bias the training distribution toward nonlinear regions, so efficient selection has to preserve enough of the original signal distribution to make test NMSE meaningful.
+
+I also explored lower-complexity neural PA models such as RVTDNN and ARVTDNN, including pruning workflows using TensorFlow Model Optimization. This connected model accuracy to deployment concerns such as parameter count, sparsity, memory footprint, and inference cost.
+
+The work also included cross-PA transfer experiments. I tested whether dynamics learned from one PA could be reused for another by freezing larger recurrent blocks and retraining only smaller dense or gain-adaptation layers. This helped frame PA modeling as a combination of reusable memory dynamics and device-specific adaptation.
+
+Representative results include BiLSTM behavioral models reaching around `-31 dB` to `-33 dB` NMSE in PA1/PA2 experiments, selected ARVTDNN-style runs around `-35 dB` NMSE, and spectral-loss DPD results improving ACLR from about `-28 dBc` before linearization to around `-44 dBc` after linearization in recorded outputs.
+
+Overall, this research combined RF measurement practice, classical GMP intuition, neural sequence modeling, differentiable offline DPD, spectral optimization, memory-polynomial input selection, pruning, and parameter-efficient adaptation. It gave me experience moving from measured RF data to deployable ML modeling ideas while keeping evaluation tied to the metrics that matter in radio systems.
+
 ## Credit Notes
 
 - <a href = "https://majid-0.github.io/">Majid Ahmed</a>
 
-## Strongest Public-Facing Claims
+## .
 
 - Developed offline ML-DPD workflows using measured IQ from an ADRV9026-MB lab evaluation-board system.
 - Built BiLSTM behavioral PA models that capture memory effects and support differentiable cascaded DPD training.
