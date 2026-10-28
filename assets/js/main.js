@@ -246,7 +246,7 @@
       }
 
       // Markers on the two tones
-      ctx.font = "500 11px 'IBM Plex Mono', monospace";
+      ctx.font = "500 11px 'Geist Mono', monospace";
       [[0, "M1"], [1, "M2"]].forEach(function (m) {
         var t = tones[m[0]];
         var mx = plot.x + plot.w * (t.f - F0) / SPAN, my = yOf(t.p);
@@ -257,7 +257,7 @@
 
       // Frequency axis labels
       ctx.fillStyle = "rgba(200,190,220,.55)";
-      ctx.font = "500 10.5px 'IBM Plex Mono', monospace";
+      ctx.font = "500 10.5px 'Geist Mono', monospace";
       var by = plot.y + plot.h - 8;
       ctx.textAlign = "left"; ctx.fillText((F0 / 1000).toFixed(4) + " GHz", plot.x + 10, by);
       ctx.textAlign = "right"; ctx.fillText(((F0 + SPAN) / 1000).toFixed(4) + " GHz", plot.x + plot.w - 10, by);
@@ -285,6 +285,7 @@
     layout();
     draw(null);
     window.addEventListener("resize", function () { layout(); draw(null); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { draw(null); });
 
     if (reduceMotion) return;
     // Only animate while the hero is on screen
