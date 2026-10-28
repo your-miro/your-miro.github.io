@@ -1,17 +1,17 @@
 ---
 layout: default
-title: No signal
+title: Not found
 permalink: /404.html
 sitemap: false
 ---
-<div class="wrap page-body">
+<div class="wrap wrap--text page-body">
   <header class="pagehead">
-    <p class="eyebrow mono">// ERR 404 · NO SIGNAL</p>
+    <p class="kicker">Error 404</p>
     <h1 class="pagehead__title">Nothing above the noise floor.</h1>
     <p class="pagehead__lede">The page you tuned to doesn’t exist — it may have moved when the site was rebuilt.</p>
   </header>
-  <div class="contact__links">
-    <a class="btn btn--primary" href="{{ '/' | relative_url }}">Back to home</a>
-    <a class="btn" href="{{ '/posts/' | relative_url }}">Browse the lab log</a>
-  </div>
+  <p class="actions">
+    <a href="{{ '/' | relative_url }}">← Back to the front page</a>
+    <a href="{{ '/posts/' | relative_url }}">Browse the lab log →</a>
+  </p>
 </div>

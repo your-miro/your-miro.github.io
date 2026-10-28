@@ -3,16 +3,8 @@
 <header class="topbar" data-topbar>
   <div class="topbar__inner wrap">
     <a class="brand" href="{{ home }}" aria-label="{{ site.title }} — home">
-      <span class="brand__mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" width="28" height="28">
-          <rect x="1" y="1" width="30" height="30" rx="5" fill="none" stroke="currentColor" stroke-opacity=".35"/>
-          <path d="M4 22 L9 22 L11 18 L13 23 L15 8 L17 24 L19 15 L21 21 L23 19 L28 19" fill="none" stroke="var(--trace)" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
-        </svg>
-      </span>
-      <span class="brand__text">
-        <span class="brand__name">{{ site.author.name }}</span>
-        <span class="brand__sub">{{ site.role }}</span>
-      </span>
+      <span class="brand__name">{{ site.author.name }}</span>
+      <span class="brand__sub">{{ site.role }}</span>
     </a>
 
     <button class="navtoggle" type="button" aria-expanded="false" aria-controls="site-nav" data-navtoggle>
@@ -21,17 +13,17 @@
     </button>
 
     <nav class="nav" id="site-nav" aria-label="Primary" data-nav>
-      <a class="nav__link" href="{{ anchor_base }}#about"><span class="nav__ch">01</span>About</a>
-      <a class="nav__link" href="{{ anchor_base }}#experience"><span class="nav__ch">02</span>Experience</a>
-      <a class="nav__link" href="{{ anchor_base }}#work"><span class="nav__ch">03</span>Work</a>
-      <a class="nav__link" href="{{ anchor_base }}#research"><span class="nav__ch">04</span>Research</a>
-      <a class="nav__link{% if page.url == '/posts/' or page.layout == 'post' %} is-current{% endif %}" href="{{ '/posts/' | relative_url }}"><span class="nav__ch">05</span>Log</a>
-      <a class="nav__link" href="{{ anchor_base }}#contact"><span class="nav__ch">06</span>Contact</a>
+      <a class="nav__link" href="{{ anchor_base }}#about">About</a>
+      <a class="nav__link" href="{{ anchor_base }}#experience">Experience</a>
+      <a class="nav__link" href="{{ anchor_base }}#work">Work</a>
+      <a class="nav__link" href="{{ anchor_base }}#research">Research</a>
+      <a class="nav__link{% if page.url == '/posts/' or page.layout == 'post' %} is-current{% endif %}" href="{{ '/posts/' | relative_url }}">Log</a>
+      <a class="nav__link" href="{{ anchor_base }}#contact">Contact</a>
       {%- if site.resume and site.resume != '' %}
       <a class="nav__link nav__link--cta" href="{{ site.resume | relative_url }}" target="_blank" rel="noopener">Résumé</a>
       {%- endif %}
       <button class="themetoggle" type="button" data-themetoggle aria-label="Toggle light/dark theme">
-        <svg class="themetoggle__icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
           <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
           <path d="M12 3.5 A8.5 8.5 0 0 1 12 20.5 Z" fill="currentColor"/>
         </svg>

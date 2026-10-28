@@ -72,7 +72,7 @@
 
   /* ---------- Reveal on scroll ---------- */
   if (!reduceMotion && "IntersectionObserver" in window) {
-    var targets = document.querySelectorAll(".sechead, .card, .timeline__item, .metric, .toolbox__group, .pipeline, .contrib, .about__text, .about__photo");
+    var targets = document.querySelectorAll(".sechead, .fig-card, .entry, .tablefig, .contrib");
     var rev = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
         if (en.isIntersecting) { en.target.classList.add("is-in"); rev.unobserve(en.target); }
@@ -125,7 +125,7 @@
       var shown = 0;
       document.querySelectorAll("[data-year]").forEach(function (sec) {
         var any = false;
-        sec.querySelectorAll(".loglist__row").forEach(function (row) {
+        sec.querySelectorAll("[data-cats]").forEach(function (row) {
           var ok = !cat || row.getAttribute("data-cats").split("|").indexOf(cat) !== -1;
           row.hidden = !ok;
           if (ok) { any = true; shown++; }

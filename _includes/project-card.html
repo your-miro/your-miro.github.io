@@ -1,40 +1,40 @@
 {%- assign p = include.project -%}
 {%- assign href = '/posts/' | append: p.post | append: '/' | relative_url -%}
-<article class="card{% if p.featured %} card--featured{% endif %}">
-  <a class="card__media card__media--{{ p.fit | default: 'art' }}" href="{{ href }}" tabindex="-1" aria-hidden="true">
+<figure class="figure fig-card">
+  <a class="fig-card__media fig-card__media--{{ p.fit | default: 'art' }}" href="{{ href }}" tabindex="-1" aria-hidden="true">
     {%- if p.image -%}
     <img src="{{ p.image | relative_url }}" alt="" loading="lazy" decoding="async">
     {%- elsif p.art == 'amam' -%}
     <svg class="art" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid meet">
-      <g class="art__grid">{%- for i in (1..9) -%}<line x1="{{ i | times: 32 }}" y1="0" x2="{{ i | times: 32 }}" y2="180"/>{%- endfor -%}{%- for i in (1..5) -%}<line x1="0" y1="{{ i | times: 30 }}" x2="320" y2="{{ i | times: 30 }}"/>{%- endfor -%}</g>
-      <path class="art__ref" d="M20 165 L300 25"/>
-      <path class="art__trace" d="M20 165 C 90 130, 150 98, 190 82 S 260 64, 300 62"/>
-      <path class="art__trace art__trace--alt" d="M20 165 C 120 110, 200 55, 300 25"/>
-      <text x="24" y="20" class="art__label">AM/AM · PA vs PA+DPD</text>
+      <rect class="art__frame" x="30" y="12" width="276" height="140"/>
+      <path class="art__ref" d="M30 152 L306 12"/>
+      <path class="art__trace" d="M30 152 C 100 118, 160 88, 200 74 S 270 58, 306 56"/>
+      <path class="art__trace art__trace--alt" d="M30 152 C 130 98, 210 46, 306 14"/>
+      <text x="168" y="172" class="art__label" text-anchor="middle">|x| (normalized input)</text>
+      <text x="236" y="98" class="art__label">PA</text>
+      <text x="236" y="40" class="art__label">PA + DPD</text>
     </svg>
     {%- elsif p.art == 'track' -%}
     <svg class="art" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid meet">
-      <g class="art__grid">{%- for i in (1..9) -%}<line x1="{{ i | times: 32 }}" y1="0" x2="{{ i | times: 32 }}" y2="180"/>{%- endfor -%}{%- for i in (1..5) -%}<line x1="0" y1="{{ i | times: 30 }}" x2="320" y2="{{ i | times: 30 }}"/>{%- endfor -%}</g>
-      <path class="art__ref" d="M290 20 L290 160"/>
-      <path class="art__trace art__trace--alt" d="M180 118 Q 240 96 290 70" stroke-dasharray="4 5"/>
-      {%- assign xs = "30,62,94,124,153,180" | split: "," -%}
-      {%- assign ys = "160,152,143,134,126,118" | split: "," -%}
-      {%- for x in xs -%}<circle class="art__dot" cx="{{ x }}" cy="{{ ys[forloop.index0] }}" r="{{ forloop.index | plus: 1 }}"/>{%- endfor -%}
-      <circle class="art__target" cx="290" cy="70" r="7"/>
-      <text x="24" y="20" class="art__label">KALMAN · x̂ = [p v a]</text>
+      <rect class="art__frame" x="30" y="12" width="276" height="140"/>
+      <path class="art__ref" d="M286 12 L286 152"/>
+      <path class="art__trace art__trace--alt" d="M180 112 Q 236 92 286 66" stroke-dasharray="4 4"/>
+      {%- assign xs = "44,72,100,127,154,180" | split: "," -%}
+      {%- assign ys = "146,139,131,124,118,112" | split: "," -%}
+      {%- for x in xs -%}<circle class="art__dot" cx="{{ x }}" cy="{{ ys[forloop.index0] }}" r="3"/>{%- endfor -%}
+      <circle class="art__target" cx="286" cy="66" r="6"/>
+      <text x="168" y="172" class="art__label" text-anchor="middle">Kalman track → predicted panel crossing</text>
     </svg>
     {%- endif -%}
   </a>
-  <div class="card__body">
-    <p class="card__kicker mono">{{ p.kicker }}</p>
-    <h3 class="card__title"><a href="{{ href }}">{{ p.title }}</a></h3>
-    <p class="card__blurb">{{ p.blurb }}</p>
+  <figcaption>
+    <span class="figlabel">Fig. {{ include.n }}.</span>
+    <a class="fig-card__title" href="{{ href }}">{{ p.title }}.</a>
+    {{ p.blurb }}
     {%- if p.readouts %}
-    <dl class="readouts">
-      {%- for r in p.readouts %}
-      <div class="readout"><dt>{{ r.label }}</dt><dd>{{ r.value }}</dd></div>
-      {%- endfor %}
-    </dl>
+    <span class="fig-card__data">
+      {%- for r in p.readouts %}<span>{{ r.label | replace: '_', ' ' }}: {{ r.value }}</span>{% endfor -%}
+    </span>
     {%- endif %}
-  </div>
-</article>
+  </figcaption>
+</figure>

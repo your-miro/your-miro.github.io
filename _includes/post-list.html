@@ -1,15 +1,17 @@
 {%- assign limit = include.limit | default: 1000 -%}
-<ol class="loglist">
+{%- assign start = include.start | default: 1 -%}
+<ol class="refs" start="{{ start }}">
   {%- for post in include.posts limit: limit %}
   {%- assign cat = post.categories | last -%}
-  <li class="loglist__row" data-cats="{{ post.categories | join: '|' | escape }}">
-    <time class="loglist__date mono" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time>
-    <div class="loglist__main">
-      <a class="loglist__title" href="{{ post.url | relative_url }}">{{ post.title }}</a>
+  <li class="refs__item" data-cats="{{ post.categories | join: '|' | escape }}">
+    <span class="refs__num" aria-hidden="true">[{{ forloop.index0 | plus: start }}]</span>
+    <span class="refs__body">
+      M. Emira, “<a href="{{ post.url | relative_url }}">{{ post.title }}</a>,”
+      <em>Lab Log</em>{% if cat %}, {{ cat }}{% endif %},
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%b. %Y' }}</time>.
       {%- assign d = post.description | strip -%}
-      {%- if d != '' and d != 'AAA' %}<p class="loglist__desc">{{ d | truncate: 170 }}</p>{% endif %}
-    </div>
-    {%- if cat %}<span class="loglist__cat mono">{{ cat }}</span>{% endif %}
+      {%- if d != '' and d != 'AAA' %}<span class="refs__desc">{{ d | truncate: 170 }}</span>{% endif %}
+    </span>
   </li>
   {%- endfor %}
 </ol>

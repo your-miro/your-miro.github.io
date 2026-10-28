@@ -1,9 +1,9 @@
 ---
 layout: default
 ---
-<article class="wrap page-body">
+<article class="wrap wrap--text page-body">
   <header class="pagehead">
-    <p class="eyebrow mono">// {{ page.eyebrow | default: 'PAGE' }}</p>
+    {%- if page.eyebrow %}<p class="kicker">{{ page.eyebrow }}</p>{% endif %}
     <h1 class="pagehead__title">{{ page.title }}</h1>
     {%- if page.description %}<p class="pagehead__lede">{{ page.description }}</p>{% endif %}
   </header>

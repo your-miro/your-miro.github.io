@@ -4,132 +4,94 @@ body_class: home
 ---
 {%- assign visible_posts = site.posts | where_exp: "p", "p.layout != 'locked'" -%}
 
-<!-- ───────────── HERO: spectrum analyzer ───────────── -->
-<section class="hero" aria-labelledby="hero-title">
-  <div class="wrap">
-    <div class="scope" data-scope>
-      <div class="scope__status mono" aria-hidden="true">
-        <span><b>CF</b> 1.6725 GHz</span>
-        <span><b>SPAN</b> 700 MHz</span>
-        <span class="hide-sm"><b>RBW</b> 1 MHz</span>
-        <span class="hide-sm"><b>VBW</b> 3 MHz</span>
-        <span class="hide-md"><b>REF</b> 20 dBm</span>
-        <span class="hide-md"><b>10 dB/</b></span>
-        <span class="scope__led"><i></i>SWEEP</span>
-      </div>
-
-      <div class="scope__screen">
-        <canvas class="scope__canvas" data-spectrum aria-hidden="true"></canvas>
-        <div class="scope__content">
-          <p class="eyebrow mono">// Electrical Engineer</p>
-          <h1 id="hero-title" class="hero__name">Marwan<br>Emira</h1>
-          <p class="hero__role mono">{{ site.role }}</p>
-          <p class="hero__lede">
-            Designing and benchmarking RF transmitter chains, radar front ends and power-amplifier
-            linearization — from datasheets and Harmonic Balance to measured IQ on the bench.
-          </p>
-        </div>
-      </div>
-
-      <div class="scope__foot">
-        <div class="softkeys">
-          <a class="softkey softkey--primary" href="#work">View work</a>
-          <a class="softkey" href="#research">Research</a>
-          <a class="softkey" href="{{ '/posts/' | relative_url }}">Lab log</a>
-          <a class="softkey" href="#contact">Contact</a>
-        </div>
-        <dl class="markers mono" aria-label="Marker readout">
-          <div><dt>M1</dt><dd>1.7425 GHz <b>9.45 dBm</b></dd></div>
-          <div><dt>M2</dt><dd>1.9425 GHz <b>9.38 dBm</b></dd></div>
-          <div class="hide-sm"><dt>ΔM</dt><dd>200 MHz <b>−0.08 dB</b></dd></div>
-        </dl>
-      </div>
-    </div>
-    <p class="hero__caption mono">
-      ↑ Trace modeled on the two-tone output of my
-      <a href="{{ '/posts/RF-Lineup/' | relative_url }}">homodyne transmitter line-up</a>
-      — LO 1842.5 MHz ± IF 100 MHz, with LO leakage between the tones.
+<!-- ───────────── Title block ───────────── -->
+<section class="titleblock" aria-labelledby="hero-title">
+  <div class="wrap wrap--text">
+    <p class="kicker">Portfolio · {{ site.time | date: '%Y' }} · RF / Radar / Electromagnetics</p>
+    <h1 id="hero-title" class="titleblock__name">Marwan Emira</h1>
+    <p class="titleblock__sub">
+      Electrical engineer designing and benchmarking RF transmitter chains, radar front ends
+      and power-amplifier linearization.
     </p>
+    <p class="titleblock__affil">
+      Advanced Radio Technologies Lab, American University of Sharjah<br>
+      <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
+      · <a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener">GitHub</a>
+      · <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}/" target="_blank" rel="noopener">LinkedIn</a>
+      {%- if site.resume and site.resume != '' %} · <a href="{{ site.resume | relative_url }}" target="_blank" rel="noopener">Résumé</a>{% endif %}
+    </p>
+
+    <div class="abstract">
+      <p><span class="runin">Abstract—</span>{{ site.description | strip }}</p>
+      <p><span class="runin">Index Terms—</span>RF transmitter design, radar, FMCW, power amplifiers,
+        digital predistortion (DPD), machine learning, PCB design, system benchmarking.</p>
+    </div>
   </div>
+
+  <figure class="figure figure--hero wrap wrap--figure">
+    <div class="figure__plot">{% include fig-spectrum.svg %}</div>
+    <figcaption>
+      <span class="figlabel">Fig. 1.</span> Two-tone output of the simulated
+      <a href="{{ '/posts/RF-Lineup/' | relative_url }}">homodyne transmitter line-up</a>
+      (LO 1842.5 MHz ± IF 100 MHz), showing the upper and lower sidebands and the LO leakage between them.
+    </figcaption>
+  </figure>
 </section>
 
-<!-- ───────────── 01 ABOUT ───────────── -->
+<!-- ───────────── I. About ───────────── -->
 <section class="section" id="about" aria-labelledby="about-title">
-  <div class="wrap">
-    <header class="sechead">
-      <span class="sechead__ch mono">CH 01</span>
-      <h2 class="sechead__title" id="about-title">About</h2>
-      <span class="sechead__rule" aria-hidden="true"></span>
-    </header>
-
-    <div class="about">
-      <figure class="about__photo frame">
-        <img src="{{ '/assets/img/thumbs/avatar.jpg' | relative_url }}" alt="Looking up a telecom tower crowded with microwave dish antennas against a starfield" loading="lazy" width="900" height="893">
-        <figcaption class="mono">IMG_7703 · microwave backhaul</figcaption>
-      </figure>
-
-      <div class="about__text">
-        <p class="about__lead">
-          Most of the work on this website entails concepts in RF/microwave engineering and machine learning —
-          designing and benchmarking transmitter chains while operating RF measurement rigs and connectorized components.
-        </p>
-        <p>
-          My day-to-day spans system modeling, test automation, and telecom subsystem analysis, with a focus on
-          spectral efficiency, signal integrity, and repeatable lab workflows.
-        </p>
-        <p>
-          Current research centers on power-amplifier linearization using advanced ML, including architecture-matched
-          modeling to align nonlinearity behavior across similar PA topologies. I received an AUS Undergraduate Research
-          Grant for this effort and continue to refine compensation strategies that improve EVM and adjacent-channel
-          performance under realistic drive conditions — in addition to another grant for my work on
-          <a href="{{ '/posts/SDP_ADRV9026/' | relative_url }}">an ADRV9026-based measurement system</a>.
-        </p>
-
-        <h3 class="subhead mono">More personal work includes…</h3>
-        <ul class="ticks">
-          <li>
-            Designing a <a href="{{ '/posts/PLL-for-GPR/' | relative_url }}">Phase-Locked Loop for a Frequency-Modulated Continuous-Wave Ground Penetrating Radar</a>
-            using ADIsimPLL and Analog Devices’ ADF4159, achieving exceptionally low frequency and phase error for clean chirp
-            generation and robust time–frequency coherence. <span class="pill mono">System build ongoing</span>
-          </li>
-          <li>
-            Earning a professional certificate in PCB fabrication (2023), building a
-            <a href="{{ '/posts/ATF38143/' | relative_url }}">1.8 GHz Class-A single-transistor PA</a>,
-            and executing multi-layer PCB processes from layout through chemical etching.
-          </li>
-          <li>
-            Planning <a href="{{ '/posts/RF-Lineup/' | relative_url }}">complete RF line-ups</a> in Keysight ADS to a fixed budget and
-            target transmission characteristics (C/IMD3 and P1dB), translating datasheet constraints into practical design trade-offs.
-          </li>
-          <li>
-            Outside the lab, organizing an <a href="{{ '/posts/GNU-Radio-Workshop/' | relative_url }}">IEEE ComSoc workshop at AUS using SDRs and GNU Radio</a> —
-            demonstrating analog modulation chains and digital payload construction with BPSK, QPSK, and QAM.
-          </li>
-        </ul>
-      </div>
+  <div class="wrap wrap--text">
+    <h2 class="sechead" id="about-title"><span class="sechead__num">I.</span> Introduction</h2>
+    <div class="columns">
+      <p class="dropcap">
+        Most of the work on this website entails concepts in RF/microwave engineering and machine learning —
+        designing and benchmarking transmitter chains while operating RF measurement rigs and connectorized components.
+        My day-to-day spans system modeling, test automation, and telecom subsystem analysis, with a focus on
+        spectral efficiency, signal integrity, and repeatable lab workflows.
+      </p>
+      <p>
+        Current research centers on power-amplifier linearization using advanced ML, including architecture-matched
+        modeling to align nonlinearity behavior across similar PA topologies. I received an AUS Undergraduate Research
+        Grant for this effort and continue to refine compensation strategies that improve EVM and adjacent-channel
+        performance under realistic drive conditions — in addition to another grant for my work on
+        <a href="{{ '/posts/SDP_ADRV9026/' | relative_url }}">an ADRV9026-based measurement system</a>.
+      </p>
+      <p>
+        More personal work includes designing a
+        <a href="{{ '/posts/PLL-for-GPR/' | relative_url }}">Phase-Locked Loop for a Frequency-Modulated Continuous-Wave Ground Penetrating Radar</a>
+        using ADIsimPLL and Analog Devices’ ADF4159, achieving exceptionally low frequency and phase error for clean chirp
+        generation and robust time–frequency coherence (system build ongoing).
+      </p>
+      <p>
+        Complementing this, I earned a professional certificate in PCB fabrication (2023), built a
+        <a href="{{ '/posts/ATF38143/' | relative_url }}">1.8 GHz Class-A single-transistor PA</a>,
+        and executed multi-layer PCB processes from layout through chemical etching. Beyond single blocks, I’ve planned
+        <a href="{{ '/posts/RF-Lineup/' | relative_url }}">complete RF line-ups</a> in Keysight ADS to a fixed budget and
+        target transmission characteristics (C/IMD3 and P1dB), translating datasheet constraints into practical design trade-offs.
+      </p>
+      <p>
+        Outside the lab, I have organized an
+        <a href="{{ '/posts/GNU-Radio-Workshop/' | relative_url }}">IEEE ComSoc workshop at AUS using SDRs and GNU Radio</a>,
+        demonstrating analog modulation chains and digital payload construction with BPSK, QPSK, and QAM.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ───────────── 02 EXPERIENCE ───────────── -->
+<!-- ───────────── II. Experience ───────────── -->
 <section class="section" id="experience" aria-labelledby="exp-title">
-  <div class="wrap">
-    <header class="sechead">
-      <span class="sechead__ch mono">CH 02</span>
-      <h2 class="sechead__title" id="exp-title">Experience</h2>
-      <span class="sechead__rule" aria-hidden="true"></span>
-    </header>
-
-    <ol class="timeline">
+  <div class="wrap wrap--text">
+    <h2 class="sechead" id="exp-title"><span class="sechead__num">II.</span> Experience</h2>
+    <ol class="entries">
       {%- for e in site.data.experience %}
-      <li class="timeline__item">
-        <p class="timeline__when mono">{{ e.when }}</p>
-        <div class="timeline__body">
-          <h3 class="timeline__title">
+      <li class="entry">
+        <p class="entry__when">{{ e.when }}</p>
+        <div>
+          <h3 class="entry__title">
             {%- if e.link -%}<a href="{{ e.link | relative_url }}">{{ e.title }}</a>{%- else -%}{{ e.title }}{%- endif -%}
           </h3>
-          <p class="timeline__org">{{ e.org }}{% if e.where %} <span class="muted">· {{ e.where }}</span>{% endif %}</p>
-          <p class="timeline__text">{{ e.text }}</p>
+          <p class="entry__org">{{ e.org }}{% if e.where %}, {{ e.where }}{% endif %}</p>
+          <p class="entry__text">{{ e.text }}</p>
         </div>
       </li>
       {%- endfor %}
@@ -137,150 +99,102 @@ body_class: home
   </div>
 </section>
 
-<!-- ───────────── 03 WORK ───────────── -->
+<!-- ───────────── III. Selected work ───────────── -->
 <section class="section" id="work" aria-labelledby="work-title">
-  <div class="wrap">
-    <header class="sechead">
-      <span class="sechead__ch mono">CH 03</span>
-      <h2 class="sechead__title" id="work-title">Selected work</h2>
-      <span class="sechead__rule" aria-hidden="true"></span>
-      <span class="sechead__meta mono">{{ site.data.projects.size }} entries</span>
-    </header>
-
-    <div class="cards">
+  <div class="wrap wrap--text">
+    <h2 class="sechead" id="work-title"><span class="sechead__num">III.</span> Selected Work</h2>
+  </div>
+  <div class="wrap wrap--figure">
+    <div class="figgrid">
       {%- for p in site.data.projects %}
-      {% include project-card.html project=p %}
+      {%- assign fig_n = forloop.index | plus: 1 %}
+      {% include project-card.html project=p n=fig_n %}
       {%- endfor %}
-      <article class="card card--more">
-        <p class="card__kicker mono">// More on the bench</p>
-        <h3 class="card__title">Everything else lives in the lab log.</h3>
-        <p>Theory notes, setup guides and side projects — {{ visible_posts.size }} entries and counting.</p>
-        <a class="btn btn--primary" href="{{ '/posts/' | relative_url }}">Open the lab log →</a>
-      </article>
     </div>
+    <p class="figgrid__more"><a href="{{ '/posts/' | relative_url }}">All {{ visible_posts.size }} entries in the lab log →</a></p>
   </div>
 </section>
 
-<!-- ───────────── 04 RESEARCH ───────────── -->
-<section class="section section--band" id="research" aria-labelledby="research-title">
-  <div class="wrap">
-    <header class="sechead">
-      <span class="sechead__ch mono">CH 04</span>
-      <h2 class="sechead__title" id="research-title">Research — ML-driven DPD</h2>
-      <span class="sechead__rule" aria-hidden="true"></span>
-      <span class="sechead__meta mono">Advanced Radio Technologies Lab</span>
-    </header>
+<!-- ───────────── IV. Research ───────────── -->
+<section class="section" id="research" aria-labelledby="research-title">
+  <div class="wrap wrap--text">
+    <h2 class="sechead" id="research-title"><span class="sechead__num">IV.</span> Research: ML-Driven DPD</h2>
+    <p>
+      The main research thread was measurement-driven ML-DPD in the Advanced Radio Technologies Lab: align measured PA
+      input/output IQ, transform the samples into memory-aware features, train behavioral PA models, and use those models
+      to evaluate or train neural DPD systems. Most experiments used measured IQ data from the team's ADRV9026-MB
+      evaluation-board system. Over time, the work expanded from BiLSTM behavioral modeling into spectral-loss DPD,
+      cross-PA transfer, efficient input selection, pruning, and hybrid least-squares/neural regression.
+    </p>
 
-    <div class="research">
-      <div class="research__intro">
-        <p class="about__lead">
-          Measurement-driven ML-DPD: align measured PA input/output IQ, transform the samples into memory-aware features,
-          train behavioral PA models, and use those models to evaluate or train neural DPD systems.
-        </p>
-        <p>
-          Most experiments used measured IQ data from the team's ADRV9026-MB evaluation-board system. Over time the work
-          expanded from BiLSTM behavioral modeling into spectral-loss DPD, cross-PA transfer, efficient input selection,
-          pruning, and hybrid least-squares/neural regression.
-        </p>
-        <div class="research__links">
-          <a class="btn btn--primary" href="{{ '/posts/offline-ml/' | relative_url }}">Read the research archive</a>
-          <a class="btn" href="{{ '/posts/DPD/' | relative_url }}">Theory: Volterra → GMP</a>
-        </div>
-      </div>
-
-      <div class="metrics" role="list">
-        <div class="metric" role="listitem">
-          <p class="metric__label mono">ACLR after linearization</p>
-          <p class="metric__value"><span class="metric__from">−28</span> → −44<small> dBc</small></p>
-          <p class="metric__note">Spectral-output-aware loss, incl. a cross-PA test</p>
-        </div>
-        <div class="metric" role="listitem">
-          <p class="metric__label mono">Selected-input ARVTDNN</p>
-          <p class="metric__value">≈ −35<small> dB NMSE</small></p>
-          <p class="metric__note">Memory-polynomial input matrix selection</p>
-        </div>
-        <div class="metric" role="listitem">
-          <p class="metric__label mono">BiLSTM PA surrogate</p>
-          <p class="metric__value">−31 <small>to</small> −33<small> dB NMSE</small></p>
-          <p class="metric__note">PA1 / PA2 behavioral models</p>
-        </div>
-      </div>
-    </div>
-
-    <figure class="pipeline" aria-label="Cascaded differentiable DPD pipeline">
-      <ol class="pipeline__steps">
-        <li><span class="mono">01</span>Measured PA in/out IQ</li>
-        <li><span class="mono">02</span>Train BiLSTM PA model</li>
-        <li><span class="mono">03</span>Freeze as surrogate</li>
-        <li><span class="mono">04</span>Insert trainable DPD</li>
-        <li><span class="mono">05</span>Optimize w/ ACLR-aware loss</li>
-      </ol>
-      <figcaption class="mono">Cascaded differentiable DPD — hardware-measured behavior informs training without the RF board in the optimization loop.</figcaption>
+    <figure class="tablefig">
+      <figcaption><span class="figlabel">Table I</span><br>Representative recorded results</figcaption>
+      <table class="booktabs">
+        <thead><tr><th>Experiment</th><th>Metric</th><th class="num">Result</th></tr></thead>
+        <tbody>
+          <tr><td>Spectral-output-aware DPD loss</td><td>ACLR</td><td class="num">−28 → −44 dBc</td></tr>
+          <tr><td>Cross-PA linearization test</td><td>ACLR</td><td class="num">≈ −44 dBc</td></tr>
+          <tr><td>Selected-input ARVTDNN</td><td>NMSE</td><td class="num">≈ −35 dB</td></tr>
+          <tr><td>BiLSTM PA behavioral model (PA1/PA2)</td><td>NMSE</td><td class="num">−31 to −33 dB</td></tr>
+          <tr><td>Memory-polynomial baseline</td><td>NMSE</td><td class="num">≈ −32.5 dB</td></tr>
+        </tbody>
+      </table>
     </figure>
 
-    <ul class="contrib">
-      <li>Built BiLSTM behavioral PA models that capture memory effects and support differentiable cascaded DPD training.</li>
-      <li>Implemented a spectral-output-aware DPD loss that directly penalizes adjacent-channel leakage.</li>
-      <li>Investigated cross-PA transfer by freezing learned recurrent PA dynamics and retraining lightweight adaptation layers.</li>
-      <li>Developed memory-polynomial input matrix selection methods for efficient PA modeling.</li>
-      <li>Explored neural model pruning for RVTDNN/ARVTDNN deployment efficiency.</li>
-      <li>Tested hybrid least-squares/neural regression layers as a bridge between GMP-style modeling and neural feature learning.</li>
-    </ul>
+    <p>
+      The cascaded workflow proceeds as (1) measured PA input/output IQ → (2) train a behavioral PA model →
+      (3) freeze it as a differentiable surrogate → (4) insert a trainable DPD before it → (5) optimize the predistorter
+      through the surrogate with an ACLR-aware loss — so hardware-measured behavior informs training without the RF
+      board in the optimization loop.
+    </p>
+
+    <h3 class="subhead">Contributions</h3>
+    <ol class="contrib">
+      <li>BiLSTM behavioral PA models that capture memory effects and support differentiable cascaded DPD training.</li>
+      <li>A spectral-output-aware DPD loss that directly penalizes adjacent-channel leakage.</li>
+      <li>Cross-PA transfer by freezing learned recurrent PA dynamics and retraining lightweight adaptation layers.</li>
+      <li>Memory-polynomial input matrix selection methods for efficient PA modeling.</li>
+      <li>Neural model pruning for RVTDNN/ARVTDNN deployment efficiency.</li>
+      <li>Hybrid least-squares/neural regression layers bridging GMP-style modeling and neural feature learning.</li>
+    </ol>
+    <p class="actions">
+      <a href="{{ '/posts/offline-ml/' | relative_url }}">Read the research archive →</a>
+      <a href="{{ '/posts/DPD/' | relative_url }}">Theory: Volterra series to GMP →</a>
+    </p>
   </div>
 </section>
 
-<!-- ───────────── TOOLBOX ───────────── -->
+<!-- ───────────── V. Toolbox ───────────── -->
 <section class="section" id="toolbox" aria-labelledby="toolbox-title">
-  <div class="wrap">
-    <header class="sechead">
-      <span class="sechead__ch mono">AUX</span>
-      <h2 class="sechead__title" id="toolbox-title">Toolbox</h2>
-      <span class="sechead__rule" aria-hidden="true"></span>
-    </header>
-    <div class="toolbox">
+  <div class="wrap wrap--text">
+    <h2 class="sechead" id="toolbox-title"><span class="sechead__num">V.</span> Methods &amp; Tools</h2>
+    <dl class="toolbox">
       {%- for g in site.data.toolbox %}
-      <div class="toolbox__group">
-        <h3 class="toolbox__band mono">{{ g.band }}</h3>
-        <ul class="chips">
-          {%- for i in g.items %}<li class="chip">{{ i }}</li>{% endfor %}
-        </ul>
-      </div>
+      <dt>{{ g.band }}</dt>
+      <dd>{{ g.items | join: ' · ' }}</dd>
       {%- endfor %}
-    </div>
+    </dl>
   </div>
 </section>
 
-<!-- ───────────── 05 LOG ───────────── -->
+<!-- ───────────── VI. Log ───────────── -->
 <section class="section" id="log" aria-labelledby="log-title">
-  <div class="wrap">
-    <header class="sechead">
-      <span class="sechead__ch mono">CH 05</span>
-      <h2 class="sechead__title" id="log-title">Latest from the log</h2>
-      <span class="sechead__rule" aria-hidden="true"></span>
-      <a class="sechead__meta mono link" href="{{ '/posts/' | relative_url }}">All {{ visible_posts.size }} entries →</a>
-    </header>
+  <div class="wrap wrap--text">
+    <h2 class="sechead" id="log-title"><span class="sechead__num">VI.</span> Recent Writing</h2>
     {% include post-list.html posts=visible_posts limit=5 %}
+    <p class="actions"><a href="{{ '/posts/' | relative_url }}">Full lab log ({{ visible_posts.size }} entries) →</a></p>
   </div>
 </section>
 
-<!-- ───────────── 06 CONTACT ───────────── -->
-<section class="section section--contact" id="contact" aria-labelledby="contact-title">
-  <div class="wrap">
-    <header class="sechead">
-      <span class="sechead__ch mono">CH 06</span>
-      <h2 class="sechead__title" id="contact-title">Contact</h2>
-      <span class="sechead__rule" aria-hidden="true"></span>
-    </header>
-    <div class="contact">
-      <p class="contact__big">Open to roles and collaboration in <span class="hl">RF</span>, <span class="hl">radar</span> and <span class="hl">electromagnetics</span>.</p>
-      <a class="contact__mail mono" href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>
-      <div class="contact__links">
-        <a class="btn" href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener">GitHub</a>
-        <a class="btn" href="https://www.linkedin.com/in/{{ site.author.linkedin }}/" target="_blank" rel="noopener">LinkedIn</a>
-        {%- if site.resume and site.resume != '' %}
-        <a class="btn btn--primary" href="{{ site.resume | relative_url }}" target="_blank" rel="noopener">Résumé (PDF)</a>
-        {%- endif %}
-      </div>
-    </div>
+<!-- ───────────── Correspondence ───────────── -->
+<section class="section section--last" id="contact" aria-labelledby="contact-title">
+  <div class="wrap wrap--text">
+    <h2 class="sechead" id="contact-title">Correspondence</h2>
+    <p class="correspondence">
+      Open to roles and collaboration in RF, radar and electromagnetics. Correspondence may be addressed to
+      <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>, or via
+      <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}/" target="_blank" rel="noopener">LinkedIn</a>
+      and <a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener">GitHub</a>.
+    </p>
   </div>
 </section>

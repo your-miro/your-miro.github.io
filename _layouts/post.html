@@ -7,25 +7,23 @@ body_class: post-page
 {%- assign cover = page.image.path | default: page.image -%}
 <article class="wrap post" data-post>
   <header class="posthead">
-    <a class="backlink mono" href="{{ '/posts/' | relative_url }}">← Log</a>
+    <a class="backlink" href="{{ '/posts/' | relative_url }}">← Lab Log</a>
     {%- if page.categories.size > 0 %}
-    <p class="eyebrow mono">// {{ page.categories | join: ' / ' }}</p>
+    <p class="kicker">{{ page.categories | join: ' · ' }}</p>
     {%- endif %}
     <h1 class="posthead__title">{{ page.title }}</h1>
+    <p class="posthead__byline">
+      {{ site.author.name }}
+      · <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %-d, %Y' }}</time>
+      {%- if page.last_modified_at %} · <span class="muted">revised <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: '%B %-d, %Y' }}</time></span>{% endif %}
+      · {{ minutes }} min read
+    </p>
     {%- assign lede = page.description | strip -%}
-    {%- if lede != '' and lede != 'AAA' %}<p class="posthead__lede">{{ lede }}</p>{% endif %}
-    <dl class="metastrip mono">
-      <div><dt>DATE</dt><dd><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%d %b %Y' }}</time></dd></div>
-      {%- if page.last_modified_at %}
-      <div><dt>UPD</dt><dd><time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: '%d %b %Y' }}</time></dd></div>
-      {%- endif %}
-      <div><dt>READ</dt><dd>{{ minutes }} min</dd></div>
-      <div><dt>WORDS</dt><dd>{{ words }}</dd></div>
-    </dl>
-    {%- if page.tags.size > 0 %}
-    <ul class="tags" aria-label="Tags">
-      {%- for t in page.tags %}<li class="tag mono">{{ t }}</li>{% endfor %}
-    </ul>
+    {%- if lede != '' and lede != 'AAA' or page.tags.size > 0 %}
+    <div class="abstract">
+      {%- if lede != '' and lede != 'AAA' %}<p><span class="runin">Abstract—</span>{{ lede }}</p>{% endif %}
+      {%- if page.tags.size > 0 %}<p><span class="runin">Index Terms—</span>{{ page.tags | join: ', ' }}.</p>{% endif %}
+    </div>
     {%- endif %}
   </header>
 
