@@ -1,0 +1,111 @@
+# Selected work shown on the home page, in display order.
+# `post` is the post's slug (matches /posts/<slug>/).
+# `fit: contain` puts diagrams on a light "screen"; `cover` fills the frame (photos).
+# `readouts` are the instrument-style figures shown on each card.
+
+- post: offline-ml
+  title: Offline ML-DPD Research
+  kicker: Research · RF Machine Learning
+  blurb: >-
+    Measurement-driven neural DPD on ADRV9026 captures — BiLSTM PA surrogates,
+    a spectral-output-aware ACLR loss, cross-PA transfer, input selection and pruning.
+  image: /assets/img/Code.png
+  fit: cover
+  featured: true
+  readouts:
+    - { label: ACLR, value: "−28 → −44 dBc" }
+    - { label: NMSE, value: "≈ −35 dB" }
+
+- post: RF-Lineup
+  title: Radio Frequency Homodyne Transmitter
+  kicker: Transceiver Design · Keysight ADS
+  blurb: >-
+    A complete Tx line-up planned to a budget in ADS — 100 MHz IF up to the DCS-1800 band,
+    Harmonic Balance analysis of spurs and LO leakage, and a custom bandpass filter.
+  image: /assets/img/Lineup/Fig1.png
+  fit: contain
+  readouts:
+    - { label: RF, value: "1.8425 GHz" }
+    - { label: P_OUT, value: "12.4 dBm" }
+
+- post: ATF38143
+  title: ATF38143 1.8 GHz Amplifier
+  kicker: Microwave Amplifiers · pHEMT
+  blurb: >-
+    Low-noise amplifier on RO4003: bias-point selection, broadband stabilization,
+    noise/gain-circle Γ-selection and microstrip matching synthesis.
+  image: /assets/img/thumbs/atf38143.jpg
+  fit: cover
+  readouts:
+    - { label: NF, value: "1.197 dB" }
+    - { label: GAIN, value: "18.3 dB" }
+
+- post: SDP_ADRV9026
+  title: ADRV9026 Measurement System
+  kicker: Test Automation · Transceivers
+  blurb: >-
+    Bring-up and documentation of the ADRV9026 + ADS9-V2EBZ evaluation system —
+    GUI, IronPython and fully-scripted operation, plus 5G NR waveform conditioning.
+  image: /assets/img/thumbs/adrv9026.jpg
+  fit: cover
+  readouts:
+    - { label: REF CLK, value: "122.88 MHz" }
+    - { label: DAC, value: "12/16 bit" }
+
+- post: PLL-for-GPR
+  title: PLL for FMCW Ground Penetrating Radar
+  kicker: Radar Design · Frequency Synthesis
+  blurb: >-
+    Chirp generation with the ADF4159 designed in ADIsimPLL for low frequency and phase
+    error — the front end of an FMCW (not pulsed) GPR prototype. System build ongoing.
+  image: /assets/img/PLL for GPR/PLL.png
+  fit: contain
+  readouts:
+    - { label: MODE, value: "FMCW" }
+    - { label: STATUS, value: "BUILD" }
+
+- post: DPD
+  title: PA Modeling & Digital Predistortion
+  kicker: Theory · Volterra → GMP
+  blurb: >-
+    From the Volterra series to memory polynomials and the Generalized Memory Polynomial —
+    the math behind PA nonlinearity, memory and least-squares DPD.
+  art: amam
+  readouts:
+    - { label: MODEL, value: "GMP" }
+    - { label: ORDER, value: "P = 7–9" }
+
+- post: GNU-Radio-Workshop
+  title: IEEE ComSoc GNU Radio Workshop
+  kicker: Workshop · SDR
+  blurb: >-
+    Organized and taught an SDR workshop at AUS — GNU Radio flowgraphs for WBFM and AM
+    reception and digital payloads with BPSK, QPSK and QAM.
+  image: /assets/img/thumbs/gnuradio-workshop.jpg
+  fit: cover
+  readouts:
+    - { label: RX, value: "WBFM · AM" }
+    - { label: MOD, value: "BPSK→QAM" }
+
+- post: VLSI_Design_Project
+  title: VLSI Full Adder
+  kicker: CMOS · 22 nm
+  blurb: >-
+    Gate-level CMOS full adder: transistor sizing, LTspice delay extraction, Electric VLSI
+    layout with clean DRC, and schematic-vs-layout parasitic comparison.
+  image: /assets/img/VLSI_Dsgn/Picture3.png
+  fit: contain
+  readouts:
+    - { label: DRC, value: "0 ERR" }
+    - { label: T_PD, value: "≈ 2× layout" }
+
+- post: CamVisProject
+  title: Tennis Ball Deflection System
+  kicker: Tracking · Kalman Filter
+  blurb: >-
+    Real-time detection and tracking on a Raspberry Pi — HSV masking, a 6-state
+    constant-acceleration Kalman filter and trajectory extrapolation to a servo deflector.
+  art: track
+  readouts:
+    - { label: LOOP, value: "≈ 10 ms" }
+    - { label: STATE, value: "6-D" }

@@ -1,0 +1,16 @@
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p class="footer__tagline" lang="ar" dir="rtl">{{ site.tagline }}</p>
+    <div class="footer__row">
+      <span class="mono">© {{ site.time | date: '%Y' }} {{ site.author.name }}</span>
+      <span class="footer__links mono">
+        <a href="https://github.com/{{ site.author.github }}" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/{{ site.author.linkedin }}/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:{{ site.author.email }}">Email</a>
+        <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+      </span>
+      <img class="footer__hits" alt="Visit counter" loading="lazy" height="20"
+           src="https://hitscounter.dev/api/hit?url=your-miro.github.io&label=Visits&icon=house-door-fill&color=%237c4dff&message=&style=flat&tz=Egypt">
+    </div>
+  </div>
+</footer>

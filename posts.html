@@ -1,0 +1,34 @@
+---
+layout: default
+title: Lab Log
+permalink: /posts/
+description: Write-ups on RF design, radar, PA linearization, DSP and the occasional side project.
+---
+{%- assign visible_posts = site.posts | where_exp: "p", "p.layout != 'locked'" -%}
+{%- assign cats = "" | split: "" -%}
+{%- for p in visible_posts -%}{%- for c in p.categories -%}{%- assign cats = cats | push: c -%}{%- endfor -%}{%- endfor -%}
+{%- assign cats = cats | uniq | sort_natural -%}
+
+<div class="wrap page-body">
+  <header class="pagehead">
+    <p class="eyebrow mono">// CH 05 · {{ visible_posts.size }} entries</p>
+    <h1 class="pagehead__title">Lab log</h1>
+    <p class="pagehead__lede">{{ page.description }}</p>
+  </header>
+
+  <div class="filters" role="group" aria-label="Filter by category" data-filters>
+    <button class="filter is-active mono" type="button" data-filter="">All</button>
+    {%- for c in cats %}
+    <button class="filter mono" type="button" data-filter="{{ c | escape }}">{{ c }}</button>
+    {%- endfor %}
+  </div>
+
+  {%- assign by_year = visible_posts | group_by_exp: "p", "p.date | date: '%Y'" -%}
+  {%- for y in by_year %}
+  <section class="logyear" data-year>
+    <h2 class="logyear__title mono">{{ y.name }}</h2>
+    {% include post-list.html posts=y.items %}
+  </section>
+  {%- endfor %}
+  <p class="filters__empty muted" data-filters-empty hidden>No entries in this category.</p>
+</div>

@@ -1,0 +1,71 @@
+---
+layout: default
+body_class: post-page
+---
+{%- assign words = content | strip_html | number_of_words -%}
+{%- assign minutes = words | divided_by: 200 | at_least: 1 -%}
+{%- assign cover = page.image.path | default: page.image -%}
+<article class="wrap post" data-post>
+  <header class="posthead">
+    <a class="backlink mono" href="{{ '/posts/' | relative_url }}">← Log</a>
+    {%- if page.categories.size > 0 %}
+    <p class="eyebrow mono">// {{ page.categories | join: ' / ' }}</p>
+    {%- endif %}
+    <h1 class="posthead__title">{{ page.title }}</h1>
+    {%- assign lede = page.description | strip -%}
+    {%- if lede != '' and lede != 'AAA' %}<p class="posthead__lede">{{ lede }}</p>{% endif %}
+    <dl class="metastrip mono">
+      <div><dt>DATE</dt><dd><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%d %b %Y' }}</time></dd></div>
+      {%- if page.last_modified_at %}
+      <div><dt>UPD</dt><dd><time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: '%d %b %Y' }}</time></dd></div>
+      {%- endif %}
+      <div><dt>READ</dt><dd>{{ minutes }} min</dd></div>
+      <div><dt>WORDS</dt><dd>{{ words }}</dd></div>
+    </dl>
+    {%- if page.tags.size > 0 %}
+    <ul class="tags" aria-label="Tags">
+      {%- for t in page.tags %}<li class="tag mono">{{ t }}</li>{% endfor %}
+    </ul>
+    {%- endif %}
+  </header>
+
+  {%- if cover and cover != '' and cover != '/assets/img/' %}
+  <figure class="postcover">
+    <img src="{{ cover | prepend: '/' | replace: '//', '/' | relative_url }}" alt="{{ page.image.alt | default: '' }}">
+  </figure>
+  {%- endif %}
+
+  <div class="post__grid">
+    <div class="prose" data-prose>
+      {{ content }}
+    </div>
+    <aside class="toc" aria-label="On this page" data-toc hidden>
+      <p class="toc__title mono">ON THIS PAGE</p>
+      <ol class="toc__list" data-toc-list></ol>
+    </aside>
+  </div>
+
+  {%- comment -%} site.posts is newest-first; skip locked posts when picking neighbours {%- endcomment -%}
+  {%- assign visible = site.posts | where_exp: "p", "p.layout != 'locked'" -%}
+  {%- assign newer = nil -%}{%- assign older = nil -%}
+  {%- for p in visible -%}
+    {%- if p.url == page.url -%}
+      {%- assign i_newer = forloop.index0 | minus: 1 -%}
+      {%- assign i_older = forloop.index0 | plus: 1 -%}
+      {%- if i_newer >= 0 -%}{%- assign newer = visible[i_newer] -%}{%- endif -%}
+      {%- assign older = visible[i_older] -%}
+    {%- endif -%}
+  {%- endfor -%}
+  <nav class="postnav" aria-label="More posts">
+    {%- if older %}
+    <a class="postnav__item" href="{{ older.url | relative_url }}">
+      <span class="mono">← Older</span><span>{{ older.title }}</span>
+    </a>
+    {%- else %}<span></span>{% endif %}
+    {%- if newer %}
+    <a class="postnav__item postnav__item--next" href="{{ newer.url | relative_url }}">
+      <span class="mono">Newer →</span><span>{{ newer.title }}</span>
+    </a>
+    {%- endif %}
+  </nav>
+</article>

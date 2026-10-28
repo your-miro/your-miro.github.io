@@ -1,0 +1,42 @@
+# Timeline entries on the home page, newest first.
+
+- when: Aug 2024 – May 2026
+  title: Undergraduate Research Assistant
+  org: American University of Sharjah (AUS)
+  where: University City, Sharjah
+  text: >-
+    Advanced Radio Technologies Lab — designing and benchmarking transmitter chains,
+    operating RF measurement rigs and connectorized components, system modeling, test
+    automation and telecom subsystem analysis, with a focus on spectral efficiency,
+    signal integrity and repeatable lab workflows.
+
+- when: Grant
+  title: AUS Undergraduate Research Grant
+  org: PA linearization with advanced ML
+  text: >-
+    Architecture-matched modeling to align nonlinearity behavior across similar PA
+    topologies, refining compensation strategies that improve EVM and adjacent-channel
+    performance under realistic drive conditions.
+
+- when: Grant
+  title: Research Grant — ADRV9026 Measurement System
+  org: AUS
+  link: /posts/SDP_ADRV9026/
+  text: >-
+    Building a third-party applet for the ADRV9026 evaluation kit that interfaces with the
+    onboard FPGA, automates waveform configuration and TX/RX scripting, benchmarks DUTs, and
+    characterizes memory effects and static nonlinearities for next-gen transceivers.
+
+- when: Oct 2025
+  title: Workshop Organizer
+  org: IEEE ComSoc AUS Chapter
+  link: /posts/GNU-Radio-Workshop/
+  text: >-
+    SDRs and GNU Radio — demonstrating analog modulation chains and digital payload
+    construction with BPSK, QPSK and QAM.
+
+- when: "2023"
+  title: Professional Certificate, PCB Fabrication
+  org: Multi-layer PCB processes
+  text: >-
+    Executed multi-layer PCB processes from layout through chemical etching.

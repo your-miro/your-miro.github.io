@@ -49,7 +49,7 @@ Delays were extracted using LTspice's `.meas TRAN` directive, which interpolates
 | NAND2 | 1.871 ns | 1.516 ns |
 | NAND3 | 1.950 ns | 1.520 ns |
  
- ![Delay Extraction for NAND3](assets\img\VLSI_Dsgn\DlyNAND.png)
+ ![Delay Extraction for NAND3](/assets/img/VLSI_Dsgn/DlyNAND.png)
 > **figure II:** LTspice waveforms for NAND2 showing the 50% crossing points used for delay extraction.
  
 ### Full Adder Top-Level Delay
@@ -72,7 +72,7 @@ A 320ns transient simulation cycling all 8 input combinations verified correct S
  
 The Sum path is ~3× slower than Cout, as expected — it passes through more gate stages. These values align with hand-calculated worst-case paths from the individual gate delays above.
 
-![An annotated waveform from `Circuit.asc` for all input combinations with Sum and C out outputs](assets\img\VLSI_Dsgn\Picture2.png) 
+![An annotated waveform from `Circuit.asc` for all input combinations with Sum and C out outputs](/assets/img/VLSI_Dsgn/Picture2.png) 
 > **figure III:** The annotated truth table waveform from `Circuit.asc` showing all 8 input combinations with Sum and Cout outputs.
  
 ---

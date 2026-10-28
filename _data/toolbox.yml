@@ -1,0 +1,41 @@
+# Toolbox groups — drawn from the tools and methods used across the posts.
+
+- band: RF & Microwave
+  items:
+    - Keysight ADS
+    - Harmonic Balance
+    - LineCalc / Smith chart matching
+    - Noise & gain circles
+    - RF line-up budgeting (C/IMD3, P1dB)
+    - Stability analysis (K, μ)
+
+- band: Radar & Synthesis
+  items:
+    - FMCW chirp generation
+    - ADIsimPLL
+    - ADF4159
+    - Phase / frequency error analysis
+
+- band: DSP & Machine Learning
+  items:
+    - Digital predistortion (MP / GMP)
+    - BiLSTM · RVTDNN · ARVTDNN
+    - TensorFlow · pruning
+    - ACLR · NMSE · AM/AM · AM/PM
+    - GNU Radio
+    - MATLAB 5G / LTE toolboxes
+
+- band: Hardware & Lab
+  items:
+    - ADRV9026 / ADS9-V2EBZ
+    - Transceiver Evaluation Software
+    - IronPython / Python automation
+    - Multi-layer PCB fabrication
+    - Raspberry Pi · OpenCV · Kalman filtering
+
+- band: IC & Digital
+  items:
+    - LTspice
+    - Electric VLSI
+    - CMOS sizing & layout
+    - Parasitic extraction

@@ -202,22 +202,7 @@ Overall, this research combined RF measurement practice, classical GMP intuition
 - Explored neural model pruning for RVTDNN/ARVTDNN deployment efficiency.
 - Tested hybrid least-squares/neural regression layers as a bridge between GMP-style modeling and neural feature learning.
 
-<script src="https://giscus.app/client.js"
-        data-repo="your-miro/your-miro.github.io"
-        data-repo-id="R_kgDOQCjQlA"
-        data-category="Announcements"
-        data-category-id="DIC_kwDOQCjQlM4C-XPP"
-        data-mapping="title"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="top"
-        data-theme="preferred_color_scheme"
-        data-lang="en"
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async>
-</script>
+{% include comment.html %}
 
 <!-- ## Open Items
 
