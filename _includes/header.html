@@ -21,12 +21,12 @@
     </button>
 
     <nav class="nav" id="site-nav" aria-label="Primary" data-nav>
-      <a class="nav__link" href="{{ anchor_base }}#about"><span class="nav__ch">01</span>About</a>
-      <a class="nav__link" href="{{ anchor_base }}#experience"><span class="nav__ch">02</span>Experience</a>
-      <a class="nav__link" href="{{ anchor_base }}#work"><span class="nav__ch">03</span>Work</a>
-      <a class="nav__link" href="{{ anchor_base }}#research"><span class="nav__ch">04</span>Research</a>
-      <a class="nav__link{% if page.url == '/posts/' or page.layout == 'post' %} is-current{% endif %}" href="{{ '/posts/' | relative_url }}"><span class="nav__ch">05</span>Log</a>
-      <a class="nav__link" href="{{ anchor_base }}#contact"><span class="nav__ch">06</span>Contact</a>
+      <a class="nav__link" href="{{ anchor_base }}#about">About</a>
+      <a class="nav__link" href="{{ anchor_base }}#experience">Experience</a>
+      <a class="nav__link" href="{{ anchor_base }}#work">Work</a>
+      <a class="nav__link" href="{{ anchor_base }}#research">Research</a>
+      <a class="nav__link{% if page.url == '/posts/' or page.layout == 'post' %} is-current{% endif %}" href="{{ '/posts/' | relative_url }}">Log</a>
+      <a class="nav__link" href="{{ anchor_base }}#contact">Contact</a>
       {%- if site.resume and site.resume != '' %}
       <a class="nav__link nav__link--cta" href="{{ site.resume | relative_url }}" target="_blank" rel="noopener">Résumé</a>
       {%- endif %}

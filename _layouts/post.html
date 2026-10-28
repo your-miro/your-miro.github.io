@@ -9,7 +9,7 @@ body_class: post-page
   <header class="posthead">
     <a class="backlink mono" href="{{ '/posts/' | relative_url }}">← Log</a>
     {%- if page.categories.size > 0 %}
-    <p class="eyebrow mono">// {{ page.categories | join: ' / ' }}</p>
+    <p class="eyebrow mono">{{ page.categories | join: ' · ' }}</p>
     {%- endif %}
     <h1 class="posthead__title">{{ page.title }}</h1>
     {%- assign lede = page.description | strip -%}

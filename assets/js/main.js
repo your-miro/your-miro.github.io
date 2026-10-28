@@ -157,7 +157,7 @@
       { f: 1892.5, p: -52, w: 1.8 }
     ];
     var FLOOR = -50;
-    var trace = new Float32Array(N), hold = new Float32Array(N);
+    var trace = new Float32Array(N);
     var W = 0, H = 0, dpr = 1, plot = null;
     var sweepMs = 2600, start = performance.now(), lastIdx = 0;
 
@@ -178,7 +178,7 @@
       for (var k = 0; k < 4; k++) acc += -Math.log(Math.max(1e-6, Math.random()));
       return model(f) + 10 * Math.log10(acc / 4) * 0.9;
     }
-    for (var i = 0; i < N; i++) { trace[i] = noisy(F0 + SPAN * i / (N - 1)); hold[i] = trace[i]; }
+    for (var i = 0; i < N; i++) { trace[i] = noisy(F0 + SPAN * i / (N - 1)); }
 
     function layout() {
       var r = cv.getBoundingClientRect();
@@ -217,36 +217,18 @@
         ctx.beginPath(); ctx.moveTo(plot.x, y); ctx.lineTo(plot.x + plot.w, y); ctx.stroke();
       }
 
-      // Max-hold (dim)
-      ctx.beginPath();
-      for (var i = 0; i < N; i++) {
-        var px = plot.x + plot.w * i / (N - 1), py = yOf(hold[i]);
-        i ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
-      }
-      ctx.strokeStyle = "rgba(242,214,117,.22)";
-      ctx.lineWidth = 1;
-      ctx.stroke();
-
-      // Live trace: glow pass + crisp pass
+      // Live trace
       ctx.beginPath();
       for (var j = 0; j < N; j++) {
         var qx = plot.x + plot.w * j / (N - 1), qy = yOf(trace[j]);
         j ? ctx.lineTo(qx, qy) : ctx.moveTo(qx, qy);
       }
       ctx.lineJoin = "round";
-      ctx.strokeStyle = "rgba(177,140,255,.28)"; ctx.lineWidth = 5; ctx.stroke();
-      ctx.strokeStyle = "#c2a4ff"; ctx.lineWidth = 1.4; ctx.stroke();
+      ctx.strokeStyle = "#c2a4ff"; ctx.lineWidth = 1.5; ctx.stroke();
 
-      // Sweep cursor
-      if (!reduceMotion && now != null) {
-        var sx = plot.x + plot.w * lastIdx / (N - 1);
-        var g = ctx.createLinearGradient(sx - 60, 0, sx, 0);
-        g.addColorStop(0, "rgba(177,140,255,0)"); g.addColorStop(1, "rgba(177,140,255,.10)");
-        ctx.fillStyle = g; ctx.fillRect(sx - 60, plot.y, 60, plot.h);
-      }
 
       // Markers on the two tones
-      ctx.font = "500 11px 'Geist Mono', monospace";
+      ctx.font = "500 12.5px 'Geist Mono', monospace";
       [[0, "M1"], [1, "M2"]].forEach(function (m) {
         var t = tones[m[0]];
         var mx = plot.x + plot.w * (t.f - F0) / SPAN, my = yOf(t.p);
@@ -257,7 +239,7 @@
 
       // Frequency axis labels
       ctx.fillStyle = "rgba(200,190,220,.55)";
-      ctx.font = "500 10.5px 'Geist Mono', monospace";
+      ctx.font = "500 12px 'Geist Mono', monospace";
       var by = plot.y + plot.h - 8;
       ctx.textAlign = "left"; ctx.fillText((F0 / 1000).toFixed(4) + " GHz", plot.x + 10, by);
       ctx.textAlign = "right"; ctx.fillText(((F0 + SPAN) / 1000).toFixed(4) + " GHz", plot.x + plot.w - 10, by);
@@ -277,9 +259,7 @@
       raf = requestAnimationFrame(tick);
     }
     function update(i) {
-      trace[i] = noisy(F0 + SPAN * i / (N - 1));
-      hold[i] = Math.max(trace[i], hold[i] - 0.15);
-    }
+      trace[i] = noisy(F0 + SPAN * i / (N - 1));    }
 
     var raf = 0, visible = true;
     layout();

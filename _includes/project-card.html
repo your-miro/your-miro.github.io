@@ -10,7 +10,7 @@
       <path class="art__ref" d="M20 165 L300 25"/>
       <path class="art__trace" d="M20 165 C 90 130, 150 98, 190 82 S 260 64, 300 62"/>
       <path class="art__trace art__trace--alt" d="M20 165 C 120 110, 200 55, 300 25"/>
-      <text x="24" y="20" class="art__label">AM/AM · PA vs PA+DPD</text>
+      <text x="24" y="20" class="art__label">AM/AM</text>
     </svg>
     {%- elsif p.art == 'track' -%}
     <svg class="art" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid meet">
@@ -21,7 +21,7 @@
       {%- assign ys = "160,152,143,134,126,118" | split: "," -%}
       {%- for x in xs -%}<circle class="art__dot" cx="{{ x }}" cy="{{ ys[forloop.index0] }}" r="{{ forloop.index | plus: 1 }}"/>{%- endfor -%}
       <circle class="art__target" cx="290" cy="70" r="7"/>
-      <text x="24" y="20" class="art__label">KALMAN · x̂ = [p v a]</text>
+      <text x="24" y="20" class="art__label">Kalman track</text>
     </svg>
     {%- endif -%}
   </a>
